@@ -1,0 +1,40 @@
+{
+  "name": "typed-objects",
+  "version": "0.1.0",
+  "description": "polyfill of typed objects for node.js",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha -R spec -t 50 test/*.js",
+    "test-cov": "istanbul cover node_modules/.bin/_mocha -- -R dot -t 50 test/*.js",
+    "test-travis": "istanbul cover node_modules/.bin/_mocha --report lcovonly -- -R dot -t 50 test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coderhaoxin/typed-objects.git"
+  },
+  "bugs": {
+    "url": "https://github.com/coderhaoxin/typed-objects/issues"
+  },
+  "homepage": "https://github.com/coderhaoxin/typed-objects",
+  "keywords": [
+    "polyfill",
+    "objects",
+    "structs",
+    "struct",
+    "typed",
+    "type",
+    "es7"
+  ],
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "istanbul": "0",
+    "mocha": "2"
+  },
+  "files": [
+    "lib"
+  ],
+  "author": "haoxin",
+  "license": "MIT"
+}

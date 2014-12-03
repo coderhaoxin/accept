@@ -1,0 +1,21 @@
+{
+  "predef": [
+    "int8",
+    "uint8",
+    "uint8clamped",
+    "int16",
+    "uint16",
+    "int32",
+    "uint32",
+    "float32",
+    "float64",
+    "any",
+    "object",
+    "string",
+    "StructType",
+    "ArrayType",
+
+    "describe",
+    "it"
+  ]
+}
