@@ -29,7 +29,7 @@
     "test": "test"
   },
   "devDependencies": {
-    "istanbul": "0",
+    "istanbul-harmony": "0",
     "mocha": "2"
   },
   "files": [

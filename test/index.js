@@ -1,12 +1,12 @@
 'use strict';
 
-var assert = require('assert');
-require('../')(global);
+const assert = require('assert');
+require('..')();
 
 describe('## typed objects', function() {
   describe('# basic', function() {
     it('StructType - uint8', function() {
-      var Point = new StructType({
+      let Point = new StructType({
         x: uint8,
         y: uint8
       });
@@ -20,7 +20,7 @@ describe('## typed objects', function() {
       assert(Point.fieldTypes.x === uint8);
       assert(Point.fieldTypes.y === uint8);
 
-      var p1 = new Point({
+      let p1 = new Point({
         x: 1,
         y: 1
       });
@@ -29,11 +29,11 @@ describe('## typed objects', function() {
     });
 
     it('StructType - uint8, uint32', function() {
-      var S = new StructType({
+      let S = new StructType({
         x: uint8,
         y: uint32
       });
-      var s = new S({
+      let s = new S({
         x: 255,
         y: 1024
       });
@@ -52,7 +52,7 @@ describe('## typed objects', function() {
     });
 
     it('StructType - uint8, uint32', function() {
-      var S = new StructType({
+      let S = new StructType({
         x: uint32,
         y: uint8
       });
@@ -66,7 +66,7 @@ describe('## typed objects', function() {
       assert(S.fieldTypes.x === uint32);
       assert(S.fieldTypes.y === uint8);
 
-      var s = new S({
+      let s = new S({
         x: 1024,
         y: 255
       });
@@ -75,7 +75,7 @@ describe('## typed objects', function() {
     });
 
     it('StructType - uint8, int8, uint8clamped, uint16, uint32, int32, float32, float64', function() {
-      var S = new StructType({
+      let S = new StructType({
         u8: uint8,
         i8: int8,
         u8c: uint8clamped,
@@ -112,7 +112,7 @@ describe('## typed objects', function() {
       assert(S.fieldTypes.f32 === float32);
       assert(S.fieldTypes.f64 === float64);
 
-      var s1 = new S({
+      let s1 = new S({
         u8: 255,
         i8: 127,
         u8c: 1024,
@@ -133,7 +133,7 @@ describe('## typed objects', function() {
       assert(s1.f32 === 1.5);
       assert(s1.f64 === 1.5);
 
-      var s2 = new S();
+      let s2 = new S();
       assert(s2.u8 === 0);
       assert(s2.i8 === 0);
       assert(s2.u8c === 0);
@@ -146,14 +146,14 @@ describe('## typed objects', function() {
     });
 
     it('StructType, TypedArray', function() {
-      var S = new StructType({
+      let S = new StructType({
         x: uint8,
         y: uint16,
         z: uint32
       });
-      var buffer = new ArrayBuffer(1024);
-      var u8a = new Uint8Array(buffer);
-      var s = new S(buffer, 100);
+      let buffer = new ArrayBuffer(1024);
+      let u8a = new Uint8Array(buffer);
+      let s = new S(buffer, 100);
       s.x = 1;
       s.y = 2;
       s.z = 3;
@@ -163,13 +163,13 @@ describe('## typed objects', function() {
     });
 
     it('StructType - nest', function() {
-      var S = new StructType({
+      let S = new StructType({
         x: uint8
       });
-      var S1 = new StructType({
+      let S1 = new StructType({
         s: S
       });
-      var s1 = new S1({
+      let s1 = new S1({
         s: {
           x: 1
         }
@@ -177,7 +177,7 @@ describe('## typed objects', function() {
       assert(s1.s.x === 1);
       s1.s.x = 2;
       assert(s1.s.x === 2);
-      var s = new S({
+      let s = new S({
         x: 42
       });
       s1.s = s;
@@ -188,11 +188,11 @@ describe('## typed objects', function() {
     });
 
     it('StructType - nest', function() {
-      var S = new StructType({
+      let S = new StructType({
         x: uint8,
         y: uint32
       });
-      var S1 = new StructType({
+      let S1 = new StructType({
         z: uint16,
         s: S
       });
@@ -208,7 +208,7 @@ describe('## typed objects', function() {
       assert(S1.fieldTypes.z === uint16);
       assert(S1.fieldTypes.s === S);
 
-      var s1 = new S1({
+      let s1 = new S1({
         z: 3,
         s: {
           x: 1,
@@ -220,7 +220,7 @@ describe('## typed objects', function() {
       assert(s1.s.x === 1 && s1.s.y === 2 && s1.z === 3);
       s1.s.x = 2;
       assert(s1.s.x === 2 && s1.s.y === 2 && s1.z === 3);
-      var s = new S({
+      let s = new S({
         x: 42,
         y: 1024
       });
@@ -232,16 +232,16 @@ describe('## typed objects', function() {
     });
 
     it('StructType - nest', function() {
-      var u8a = new Uint8Array(1024);
-      var S = new StructType({
+      let u8a = new Uint8Array(1024);
+      let S = new StructType({
         x: uint8,
         y: uint32
       });
-      var S1 = new StructType({
+      let S1 = new StructType({
         z: uint16,
         s: S
       });
-      var s1 = new S1(u8a.buffer, 100);
+      let s1 = new S1(u8a.buffer, 100);
       s1.s = new S({
         x: 1,
         y: 2
@@ -254,7 +254,7 @@ describe('## typed objects', function() {
     });
 
     it('ArrayType', function() {
-      var A = new ArrayType(uint8, 10);
+      let A = new ArrayType(uint8, 10);
 
       assert(A.variable === false);
       assert(A.opaque === false);
@@ -262,8 +262,8 @@ describe('## typed objects', function() {
       assert(A.byteAlignment === 1);
       assert(A.elementType === uint8);
 
-      var a = new A();
-      var i;
+      let a = new A();
+      let i;
       assert(a.length === 10);
       assert(a.byteLength === 10);
       assert(a.byteOffset === 0);
@@ -271,14 +271,14 @@ describe('## typed objects', function() {
       for (i = 0; i < 10; i++) {
         assert(a[i] === i);
       }
-      var a1 = new A([10, 9, 8, 7, 6, 5, 4, 3, 2, 1]);
+      let a1 = new A([10, 9, 8, 7, 6, 5, 4, 3, 2, 1]);
       assert(a1.length === 10);
       for (i = 0; i < 10; i++)
         assert(a1[i] === 10 - i);
     });
 
     it('ArrayType', function() {
-      var A = new ArrayType(uint16, 10);
+      let A = new ArrayType(uint16, 10);
 
       assert(A.variable === false);
       assert(A.opaque === false);
@@ -286,33 +286,33 @@ describe('## typed objects', function() {
       assert(A.byteAlignment === 2);
       assert(A.elementType === uint16);
 
-      var a = new A();
-      var i;
+      let a = new A();
+      let i;
       assert(a.length === 10);
       for (i = 0; i < 10; i++) a[i] = i;
       for (i = 0; i < 10; i++) {
         assert(a[i] === i);
       }
-      var a1 = new A([10, 9, 8, 7, 6, 5, 4, 3, 2, 1]);
+      let a1 = new A([10, 9, 8, 7, 6, 5, 4, 3, 2, 1]);
       assert(a1.length === 10);
       for (i = 0; i < 10; i++)
         assert(a1[i] === 10 - i);
     });
 
     it('StructType, ArrayType', function() {
-      var S = new StructType({
+      let S = new StructType({
         x: uint8,
         y: uint32
       });
-      var initializer = [];
-      var i;
+      let initializer = [];
+      let i;
       for (i = 0; i < 10; i++) {
         initializer.push(new S({
           x: 2 * i,
           y: 2 * i + 1
         }));
       }
-      var A = new ArrayType(S, 10);
+      let A = new ArrayType(S, 10);
 
       assert(A.variable === false);
       assert(A.opaque === false);
@@ -320,14 +320,14 @@ describe('## typed objects', function() {
       assert(A.byteAlignment === 4);
       assert(A.elementType === S);
 
-      var a = new A(initializer);
+      let a = new A(initializer);
       assert(a.length === 10);
       for (i = 0; i < 10; i++) {
         assert(a[i].x === 2 * i);
         assert(a[i].y === 2 * i + 1);
       }
 
-      var a1 = new A();
+      let a1 = new A();
       for (i = 0; i < 10; i++) {
         a1[i] = initializer[i];
       }
@@ -340,16 +340,16 @@ describe('## typed objects', function() {
     });
 
     it('StructType, ArrayType', function() {
-      var S = new StructType({
+      let S = new StructType({
         x: uint8
       });
-      var A = new ArrayType(S, 1);
-      var a = new A([{
+      let A = new ArrayType(S, 1);
+      let a = new A([{
         x: 10
       }]);
       assert(a[0].x === 10);
 
-      var uint32Array = new ArrayType(uint32);
+      let uint32Array = new ArrayType(uint32);
 
       assert(uint32Array.variable === true);
       assert(uint32Array.opaque === false);
@@ -357,7 +357,7 @@ describe('## typed objects', function() {
       assert(uint32Array.byteLength === undefined);
       assert(uint32Array.elementType === uint32);
 
-      var u32a = new uint32Array(10);
+      let u32a = new uint32Array(10);
       assert(u32a.length === 10);
       u32a[0] = 11;
       u32a[7] = 56;
@@ -366,12 +366,12 @@ describe('## typed objects', function() {
     });
 
     it('StructType, ArrayType', function() {
-      var A = new ArrayType(uint8, 3);
-      var S = new StructType({
+      let A = new ArrayType(uint8, 3);
+      let S = new StructType({
         left: A,
         right: A
       });
-      var s = new S({
+      let s = new S({
         left: [1, 2, 3],
         right: [257, 258, 259]
       });
@@ -386,33 +386,33 @@ describe('## typed objects', function() {
       assert(s.right.length == 3);
       assert(s.right.byteOffset === 3);
       assert(s.right.byteLength === 3);
-      for (var i = 0; i < 3; i++) {
+      for (let i = 0; i < 3; i++) {
         assert(s.left[i] === s.right[i]);
       }
     });
 
     it('StructType, ArrayType', function() {
-      var A = new ArrayType(uint8, 3);
-      var S = new StructType({
+      let A = new ArrayType(uint8, 3);
+      let S = new StructType({
         z: uint32,
         left: A
       });
-      var s = new S({
+      let s = new S({
         left: [1, 2, 3]
       });
       assert(s.left.length == 3);
-      for (var i = 0; i < 3; i++) {
+      for (let i = 0; i < 3; i++) {
         assert(s.left[i] === i + 1);
       }
     });
 
     it('StructType', function() {
-      var S = new StructType({
+      let S = new StructType({
         x: uint8,
         o: object
       });
-      var o = {};
-      var s = new S({
+      let o = {};
+      let s = new S({
         x: 5,
         o: o
       });
@@ -430,16 +430,16 @@ describe('## typed objects', function() {
     });
 
     it('StructType', function() {
-      var S = new StructType({
+      let S = new StructType({
         x: uint8,
         o: object
       });
-      var S1 = new StructType({
+      let S1 = new StructType({
         s: S,
         x: uint32
       });
-      var o = {};
-      var s1 = new S1({
+      let o = {};
+      let s1 = new S1({
         s: {
           x: 5,
           o: o
@@ -453,16 +453,16 @@ describe('## typed objects', function() {
     });
 
     it('StructType', function() {
-      var S = new StructType({
+      let S = new StructType({
         x: uint8,
         y: uint32
       });
-      var S1 = new StructType({
+      let S1 = new StructType({
         s: S,
         o: object
       });
-      var o = {};
-      var s1 = new S1({
+      let o = {};
+      let s1 = new S1({
         s: {
           x: 5,
           y: 1024
@@ -480,15 +480,15 @@ describe('## typed objects', function() {
     });
 
     it('ArrayType', function() {
-      var A = new ArrayType(object, 100);
+      let A = new ArrayType(object, 100);
       assert(A.variable === false);
       assert(A.opaque === true);
       assert(A.storage === undefined);
       assert(A.byteLength === undefined);
       assert(A.byteOffset === undefined);
-      var o = {};
-      var a = new A();
-      var i;
+      let o = {};
+      let a = new A();
+      let i;
       for (i = 0; i < 100; i++) {
         a[i] = o;
       }

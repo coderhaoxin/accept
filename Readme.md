@@ -10,7 +10,7 @@
 ### Example
 
 ```js
-require('typed-objects')(global);
+require('typed-objects')();
 
 var Point = new StructType({
   x: int32,
