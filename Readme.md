@@ -5,27 +5,29 @@
 [![Dependency status][david-img]][david-url]
 
 ### typed-objects
+
 * polyfill of ES7 typed objects for node.js
 
 ### Example
 
 ```js
-require('typed-objects')();
+require('typed-objects')()
 
 var Point = new StructType({
   x: int32,
   y: int32
-});
+})
 
 var point = new Point({
   x: 123,
   y: 456
-});
+})
 ```
 
-### Spec
+### Referer
+
 * [typed-objects](https://github.com/dslomov-chromium/typed-objects-es7)
-* [ecmascript wiki](http://wiki.ecmascript.org/doku.php?id=harmony:typed_objects)
+* [typed-objects-explainer](https://github.com/nikomatsakis/typed-objects-explainer)
 
 ### License
 MIT
