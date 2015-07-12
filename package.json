@@ -2,11 +2,13 @@
   "name": "typed-objects",
   "version": "0.3.0",
   "description": "polyfill of typed objects for node.js",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "mocha -R spec -t 50 test/*.js",
-    "test-cov": "istanbul cover node_modules/.bin/_mocha -- -R dot -t 50 test/*.js",
-    "test-travis": "istanbul cover node_modules/.bin/_mocha --report lcovonly -- -R dot -t 50 test/*.js"
+    "build": "babel lib --out-dir dist",
+    "watch": "babel lib --out-dir dist --watch",
+    "test": "mocha",
+    "test-cov": "istanbul cover node_modules/.bin/_mocha --",
+    "test-travis": "istanbul cover node_modules/.bin/_mocha --report lcovonly --"
   },
   "repository": {
     "type": "git",
@@ -29,11 +31,12 @@
     "test": "test"
   },
   "devDependencies": {
+    "babel": "^5.6.14",
     "istanbul-harmony": "0",
     "mocha": "2"
   },
   "files": [
-    "lib"
+    "dist"
   ],
   "author": "haoxin",
   "license": "MIT"
