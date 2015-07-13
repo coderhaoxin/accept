@@ -1,23 +1,16 @@
 {
   "name": "typed-objects",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "polyfill of typed objects for node.js",
   "main": "dist/index.js",
   "scripts": {
     "build": "babel lib --out-dir dist",
     "watch": "babel lib --out-dir dist --watch",
     "test": "mocha",
-    "test-cov": "istanbul cover node_modules/.bin/_mocha --",
-    "test-travis": "istanbul cover node_modules/.bin/_mocha --report lcovonly --"
+    "test-cov": "istanbul cover node_modules/.bin/_mocha",
+    "test-travis": "istanbul cover node_modules/.bin/_mocha --report lcovonly"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/coderhaoxin/typed-objects.git"
-  },
-  "bugs": {
-    "url": "https://github.com/coderhaoxin/typed-objects/issues"
-  },
-  "homepage": "https://github.com/coderhaoxin/typed-objects",
+  "repository": "coderhaoxin/typed-objects",
   "keywords": [
     "polyfill",
     "objects",
@@ -27,14 +20,11 @@
     "type",
     "es7"
   ],
-  "directories": {
-    "test": "test"
-  },
   "dependencies": {
     "object-assign": "^3.0.0"
   },
   "devDependencies": {
-    "babel": "^5.6.14",
+    "babel": "5",
     "istanbul-harmony": "0",
     "mocha": "2"
   },
