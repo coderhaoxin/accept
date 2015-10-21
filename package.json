@@ -1,6 +1,6 @@
 {
   "name": "typed-objects",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "polyfill of typed objects for node.js",
   "main": "dist/index.js",
   "scripts": {
