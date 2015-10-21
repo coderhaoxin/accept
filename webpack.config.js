@@ -2,7 +2,7 @@ module.exports = {
     entry: './lib/index',
 
     output: {
-        filename: 'typed-object.js',
+        filename: 'typed-objects.js',
         path: 'release'
     },
 
