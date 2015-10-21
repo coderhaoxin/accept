@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "babel": "5",
+    "babel-loader": "^5.3.2",
     "istanbul-harmony": "0",
     "mocha": "2"
   },
